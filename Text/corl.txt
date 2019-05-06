@@ -1,0 +1,80 @@
+MinTemp
+	Pearson Correlations
+		MaxTemp                 0.736   Strong
+		Humidity9am            -0.234   Strong
+		Humidity3pm             0.006   Strong
+		Pressure9am            -0.451   Strong
+		Pressure3pm            -0.462   Strong
+		Temp9am                 0.902   Strong
+		Temp3pm                 0.709   Strong
+
+MaxTemp
+	Pearson Correlations
+		MinTemp                 0.736   Strong
+		Humidity9am            -0.505   Strong
+		Humidity3pm            -0.509   Strong
+		Pressure9am            -0.332   Strong
+		Pressure3pm            -0.427   Strong
+		Temp9am                 0.887   Strong
+		Temp3pm                 0.985   Strong
+
+Humidity9am
+	Pearson Correlations
+		MinTemp                -0.234   Strong
+		MaxTemp                -0.505   Strong
+		Humidity3pm             0.667   Strong
+		Pressure9am             0.140   Strong
+		Pressure3pm             0.187   Strong
+		Temp9am                -0.473   Strong
+		Temp3pm                -0.500   Strong
+
+Humidity3pm
+	Pearson Correlations
+		MinTemp                 0.006   Strong
+		MaxTemp                -0.509   Strong
+		Humidity9am             0.667   Strong
+		Pressure9am            -0.027   Strong
+		Pressure3pm             0.052   Strong
+		Temp9am                -0.221   Strong
+		Temp3pm                -0.558   Strong
+
+Pressure9am
+	Pearson Correlations
+		MinTemp                -0.451   Strong
+		MaxTemp                -0.332   Strong
+		Humidity9am             0.140   Strong
+		Humidity3pm            -0.027   Strong
+		Pressure3pm             0.961   Strong
+		Temp9am                -0.423   Strong
+		Temp3pm                -0.287   Strong
+
+Pressure3pm
+	Pearson Correlations
+		MinTemp                -0.462   Strong
+		MaxTemp                -0.427   Strong
+		Humidity9am             0.187   Strong
+		Humidity3pm             0.052   Strong
+		Pressure9am             0.961   Strong
+		Temp9am                -0.470   Strong
+		Temp3pm                -0.390   Strong
+
+Temp9am
+	Pearson Correlations
+		MinTemp                 0.902   Strong
+		MaxTemp                 0.887   Strong
+		Humidity9am            -0.473   Strong
+		Humidity3pm            -0.221   Strong
+		Pressure9am            -0.423   Strong
+		Pressure3pm            -0.470   Strong
+		Temp3pm                 0.861   Strong
+
+Temp3pm
+	Pearson Correlations
+		MinTemp                 0.709   Strong
+		MaxTemp                 0.985   Strong
+		Humidity9am            -0.500   Strong
+		Humidity3pm            -0.558   Strong
+		Pressure9am            -0.287   Strong
+		Pressure3pm            -0.390   Strong
+		Temp9am                 0.861   Strong
+
