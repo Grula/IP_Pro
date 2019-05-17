@@ -1,0 +1,65 @@
+
+
+corel:
+	minTmp_Temp9am
+	
+
+	Sunshine 
+	Ranifall 
+	Evaporation
+	WindgustSpeed
+	Windspeed9am
+	Windspeed3pm
+					treba pretvoriti u continuous don 
+
+
+
+
+
+
+
+
+	rainfall treba normalizovati
+	i evaporation
+
+
+	temp9AM i temp3pm  uklanjamo 
+	tempMin i tempMax
+
+	i mozda tempMin / tempMax
+
+	presure 3pm i pressure9am -> pressure3pm
+
+
+
+
+	CART
+
+	maxTreeDepth <4 5 6 7 8>
+	pruneTree y n
+	stopingRules : [2%,3%,4%,5%>] [1%,2%,3%>]
+	Missclassification cost: no [1,2] yes [1,2]
+	combinigRule : [Voitng, Probability, mean Prob]
+				   [Mean, Median]
+
+	Impurity mesure : [Gini, Twoing, Ordered]
+
+	8 y 2% 1% 1,2 [1,1] 1  - 80.9%
+	8 y 2% 1% 1,2 [1,1] 2  - 81%
+	7 y 2% 1% 1,2 [1,1] 2  - 82.5%
+	6 y 2% 1% 1,2 [1,1] 2  - 82.7%
+	6 y 4% 1% 1,2 [1,1] 2  - 82.15%
+	6 y 2% 1% 1,1.5 [1,1] 2  - 83%
+	6 y 2% 1% 1,1.7 [1,1] 2  - 82.95%
+	6 y 2% 1% 1,1.6 [1,1] 2  - 83.1%
+	5 y 2% 1% 1,1.6 [1,1] 2  - 82.9%
+	5 y 2% 1% 1,1.6 [2,1] 2  - 82.94%
+	5 y 2% 1% 1,1.6 [3,1] 2  - 82.96%
+	5 y 2% 1% 1,1.6 [1,2] 2  - 82.93%
+	5 y 2% 1% 1,1.6 [1,1] 2  - 83.17%
+	5 y 2% 1% 1,1.6 [1,1] 1  - 83.11%
+	5 y 2% 1% 1,1.6 [1,1] 3  - 81.61%
+
+	5 y 2% 1% 1,1.6 [1,1] 2  - best so far
+
+
