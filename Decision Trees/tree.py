@@ -54,7 +54,7 @@ df.dropna(inplace = True)
 #df = df.fillna(df.mode().iloc[0])
 
 
-#Skidanje Anomalija
+#Skidanje elemenata van granica
 for col in features:
     val = df[col].head(1).values[0]     
     if isinstance(val, (np.float64)):
