@@ -15,8 +15,20 @@ from sklearn.model_selection import GridSearchCV
 import sklearn.metrics as met
 
 
-df = pd.read_csv('../Data/weatherAUS.csv').sample(frac = .3)
-features = df.columns[2:-1].tolist()
+df = pd.read_csv('../Data/weatherAUS.csv').sample(frac = .5)
+features = df.columns[1:-1].tolist()
+
+"""
+Replacing NaN values
+integer type - change to column mean
+string type - change to most occuring string
+"""
+for col in features:
+    if df[col].isna().sum() != 0:
+        if isinstance(df[col].mode()[0], (np.float64)):
+            df[col].replace(np.nan, df[col].mean(), inplace = True)
+        else:
+            df[col].replace(np.nan, df[col].mode()[0], inplace = True)
 
 """
 Removing elements outside the boundaries
@@ -33,10 +45,11 @@ for col in features:
 """
 Conversion of String elements into numeric
 """
-string_elemets = ['Location','WindGustDir','RainToday']
+string_elemets = ['Location','WindGustDir','RainTomorrow']
 for element in string_elemets:
     list_of_elements = list(set(df[element]))
     df.replace(list_of_elements, list(range(0,len(list_of_elements))), inplace = True)
+    
 
 """
 Finding corelation between elemts
@@ -65,18 +78,14 @@ else:
 x.columns = features
 
 
-
 y = df['RainTomorrow']
+x_train, x_test, y_train, y_test = train_test_split(x, y, train_size = 0.7, stratify=y)
 
 """
 
 KNN algorithm
 
 """
-
-x_train, x_test, y_train, y_test = train_test_split(x, y, train_size = 0.7)
-
-
 parameters = {
         'n_neighbors' : range(3,6),
         'p' : [1,2],

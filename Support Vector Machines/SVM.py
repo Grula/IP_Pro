@@ -13,9 +13,21 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 import sklearn.metrics as met
 from sklearn import svm
 
-df = pd.read_csv('../Data/weatherAUS.csv').sample(frac = .01)
-features = df.columns[2:-1].tolist()
+df = pd.read_csv('../Data/weatherAUS.csv').sample(frac = .2)
+features = df.columns[1:-1].tolist()
+print(features)
 
+"""
+Replacing NaN values
+integer type - change to column mean
+string type - change to most occuring string
+"""
+for col in features:
+    if df[col].isna().sum() != 0:
+        if isinstance(df[col].mode()[0], (np.float64)):
+            df[col].replace(np.nan, df[col].mean(), inplace = True)
+        else:
+            df[col].replace(np.nan, df[col].mode()[0], inplace = True)
 
 """
 Removing elements outside the boundaries
@@ -55,7 +67,7 @@ features = df.columns[:-1].tolist()
 """
 Nomrlazing data
 """
-to_normalize = False
+to_normalize = True
 if to_normalize:
     x = pd.DataFrame(prep.MinMaxScaler().fit_transform(df[features]))
 else:
@@ -65,7 +77,7 @@ x.columns = features
 
 
 y = df['RainTomorrow']
-x_train, x_test, y_train, y_test = train_test_split(x, y, train_size = 0.7)
+x_train, x_test, y_train, y_test = train_test_split(x, y, train_size = 0.7, stratify = y)
 
 """
 
@@ -74,18 +86,19 @@ SVM algorithm
 """
 
 parameters = [
-#            {
-#                'C' : [0.2,0.5],
-#                'kernel' : ['poly'],
-#                'degree' : [1,3],
-#                'gamma' : [0.5,1],
-#                'coef0' : [.5, 1]
-#            },
             {
-                'C' : [10]
+                'C' : [1,5],
+                'kernel' : ['poly'],
+                'degree' : [1,3],
+                'gamma' : [0.5,1],
+                'coef0' : [.5]
+            },
+            {
+                'C' : [10],
                 'kernel' : ['rbf'],
-                'coef0' : [.5, 1]
-            }]
+                'coef0' : [.5,1]
+            }
+]
 clv = GridSearchCV(svm.SVC(), parameters, cv=3, scoring='f1_macro')
 clv.fit(x_train, y_train)
 
@@ -99,7 +112,6 @@ print(met.classification_report(y_train, y_pred))
 print()
 cnf_matrix = met.confusion_matrix(y_train, y_pred)
 print("Confusion Matrix", cnf_matrix, sep="\n")
-print("\n")
 print("*********************************")
 
 print("************ [Test] *************")
@@ -109,7 +121,6 @@ print(met.classification_report(y_test, y_pred))
 print()
 cnf_matrix = met.confusion_matrix(y_test, y_pred)
 print("Confusion Matrix", cnf_matrix, sep="\n")
-print("\n")
 print("*********************************")
 
 print("SVM best parameters: \

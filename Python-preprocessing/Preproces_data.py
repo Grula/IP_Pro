@@ -10,6 +10,18 @@ import numpy as np
 
 def data_preprocessing(df , features, string_elemets, corelation = False):
     """
+    Replacing NaN values
+    integer type - change to column mean
+    string type - change to most occuring string
+    """
+    for col in features:
+        if df[col].isna().sum() != 0:
+        if isinstance(df[col].mode()[0], (np.float64)):
+            df[col].replace(np.nan, df[col].mean(), inplace = True)
+        else:
+            df[col].replace(np.nan, df[col].mode()[0], inplace = True)
+            
+    """
     Removing elements outside the boundaries
     """
     for col in features:
@@ -23,6 +35,7 @@ def data_preprocessing(df , features, string_elemets, corelation = False):
     """
     Conversion of String elements into numeric
     """
+    #string_elemets = ['Location','WindGustDir','RainTomorrow']
     for element in string_elemets:
         list_of_elements = list(set(df[element]))
         df.replace(list_of_elements, list(range(0,len(list_of_elements))), inplace = True)

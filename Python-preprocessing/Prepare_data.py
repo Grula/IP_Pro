@@ -29,6 +29,8 @@ drop_NaN_percent = 0.35
 df = pd.read_csv(data_location)
 df.drop_duplicates(inplace = True)
 df.replace("NA", np.nan, inplace = True)
+df.replace("", np.nan, inplace = True)
+
 """
 If data contains more then 35% 
 of NaN values it is being droped
@@ -42,30 +44,31 @@ for col in df:
 df = df.drop(columns = drop_columns)
     
 
-"""
 
+"""
 Since our predictor is unbalanced
 We are removing excess 'No' from data
 first dropping NaN values where predictor is
 'No' and then randomly chosing equal amount as 'Yes' 
 """
-yes = no = 0    
-for row in df[predictor_class]:
-    if row == pred_true:
-        yes += 1
-    else:
-        no += 1
-df_yes = df[df[predictor_class] == pred_true].copy(deep = True)
-df_no = df[df[predictor_class] == pred_false].copy(deep = True)
-df_no.dropna(inplace = True)
-df_no = df_no.sample(n = df_yes.shape[0])
+if False:
+    yes = no = 0    
+    for row in df[predictor_class]:
+        if row == pred_true:
+            yes += 1
+        else:
+            no += 1
+    df_yes = df[df[predictor_class] == pred_true].copy(deep = True)
+    df_no = df[df[predictor_class] == pred_false].copy(deep = True)
+    df_no.dropna(inplace = True)
+    df_no = df_no.sample(n = df_yes.shape[0])
+    
+    
+    df = df_yes.append(df_no)
+    df = shuffle(df)
 
-
-df = df_yes.append(df_no)
-df = shuffle(df)
-
-#df.to_excel(r'../Data/weatherAUS.xlsx')
-#df.to_csv(r'../Data/weatherAUS.csv')
+df.to_excel(r'../Data/weatherAUS.xlsx')
+df.to_csv(r'../Data/weatherAUS.csv')
 
 """
 Creating Train and Test sets 

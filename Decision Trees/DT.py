@@ -14,7 +14,20 @@ import sklearn.metrics as met
 from sklearn import tree
 
 df = pd.read_csv('../Data/weatherAUS.csv')
-features = df.columns[2:-1].tolist()
+features = df.columns[1:-1].tolist()
+
+"""
+Replacing NaN values
+integer type - change to column mean
+string type - change to most occuring string
+"""
+for col in features:
+    if df[col].isna().sum() != 0:
+        if isinstance(df[col].mode()[0], (np.float64)):
+            df[col].replace(np.nan, df[col].mean(), inplace = True)
+        else:
+            df[col].replace(np.nan, df[col].mode()[0], inplace = True)
+
 
 """
 Removing elements outside the boundaries
@@ -23,14 +36,16 @@ for col in features:
     val = df[col].head(1).values[0]     
     if isinstance(val, (np.float64)):
         q1 = df[col].quantile(0.25)
-        q2 = df[col].quantile(0.5)
+#        q2 = df[col].quantile(0.5)
         q3 = df[col].quantile(0.75)
         ext = [q1-1.5*(q3-q1),q3+1.5*(q3-q1)]
         df.drop( df[(df[col]<ext[0]) | (df[col]>ext[1])].index, inplace = True)
+        
+        
 """
 Conversion of String elements into numeric
 """
-string_elemets = ['Location','WindGustDir','RainToday']
+string_elemets = ['Location','WindGustDir','RainTomorrow']
 for element in string_elemets:
     list_of_elements = list(set(df[element]))
     df.replace(list_of_elements, list(range(0,len(list_of_elements))), inplace = True)
@@ -46,12 +61,11 @@ else:
 x.columns = features
 
 
+
+
+
 y = df['RainTomorrow']
-
-
-x_train, x_test, y_train, y_test = train_test_split(x, y, train_size = 0.7)
-
-
+x_train, x_test, y_train, y_test = train_test_split(x, y, train_size = 0.7, stratify = y)
 
 """
 
@@ -59,12 +73,12 @@ Decision Tree
 
 """
 parameters = {
-        'max_depth' : range(4,12)
+        'max_depth' : range(5,12)
         }
 
 tree = GridSearchCV(tree.DecisionTreeClassifier(),
                    parameters,
-                   cv = 10,
+                   cv = 5,
                    scoring = 'f1_macro')
 tree.fit(x_train, y_train)
 
@@ -91,5 +105,5 @@ print("*********************************")
 print("Tree depth with best score : %s" % (tree.best_estimator_.max_depth))
 
 """
-
+Tree depth with best score : 9
 """

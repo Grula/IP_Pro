@@ -14,7 +14,20 @@ import sklearn.metrics as met
 from sklearn.neural_network import MLPClassifier
 
 df = pd.read_csv('../Data/weatherAUS.csv').sample(frac = .2)
-features = df.columns[2:-1].tolist()
+features = df.columns[1:-1].tolist()
+print(features)
+"""
+Replacing NaN values
+integer type - change to column mean
+string type - change to most occuring string
+"""
+for col in features:
+    if df[col].isna().sum() != 0:
+        if isinstance(df[col].mode()[0], (np.float64)):
+            df[col].replace(np.nan, df[col].mean(), inplace = True)
+        else:
+            df[col].replace(np.nan, df[col].mode()[0], inplace = True)
+
 
 """
 Removing elements outside the boundaries
@@ -31,10 +44,11 @@ for col in features:
 """
 Conversion of String elements into numeric
 """
-string_elemets = ['Location','WindGustDir','RainToday']
+string_elemets = ['Location','WindGustDir','RainTomorrow']
 for element in string_elemets:
     list_of_elements = list(set(df[element]))
     df.replace(list_of_elements, list(range(0,len(list_of_elements))), inplace = True)
+    
 
 """
 Finding corelation between elemts
@@ -54,7 +68,7 @@ features = df.columns[:-1].tolist()
 """
 Nomrlazing data
 """
-to_normalize = False
+to_normalize = True
 if to_normalize:
     x = pd.DataFrame(prep.MinMaxScaler().fit_transform(df[features]))
 else:
@@ -63,7 +77,6 @@ x.columns = features
 
 
 y = df['RainTomorrow']
-
 x_train, x_test, y_train, y_test = train_test_split(x, y, train_size = 0.7, stratify=y)
 
 
@@ -74,7 +87,7 @@ NN algorithm
 """
 hidden_layer_sizes = []
 for i in range(1,2):
-    for j in range(6,13):
+    for j in range(8,13):
         hidden_layer_sizes.append((j,)*i)
 params = [{'solver': ['sgd','adam'],
            'learning_rate': [ 'adaptive','constant'],
