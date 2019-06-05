@@ -15,7 +15,7 @@ from sklearn.model_selection import GridSearchCV
 import sklearn.metrics as met
 
 
-df = pd.read_csv('../Data/weatherAUS.csv').sample(frac = .5)
+df = pd.read_csv('../Data/weatherAUS.csv').sample(frac = .3)
 features = df.columns[1:-1].tolist()
 
 """
@@ -88,8 +88,8 @@ KNN algorithm
 """
 parameters = {
         'n_neighbors' : range(3,6),
-        'p' : [1,2],
-        'weights' : ['distance']
+        'p' : [1,2,3],
+        'weights' : ['distance','uniform']
         }
 
 knn = GridSearchCV(KNeighborsClassifier(), parameters, cv = 5, scoring = 'f1_macro')
