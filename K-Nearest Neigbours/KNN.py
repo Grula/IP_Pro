@@ -88,7 +88,7 @@ KNN algorithm
 """
 parameters = {
         'n_neighbors' : range(3,6),
-        'p' : [1,2,3],
+        'p' : [1,2],
         'weights' : ['distance','uniform']
         }
 
