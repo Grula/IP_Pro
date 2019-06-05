@@ -87,9 +87,9 @@ KNN algorithm
 
 """
 parameters = {
-        'n_neighbors' : range(3,6),
-        'p' : [1,2],
-        'weights' : ['distance','uniform']
+        'n_neighbors' : [4],
+        'p' : [2],
+        'weights' : ['uniform']
         }
 
 knn = GridSearchCV(KNeighborsClassifier(), parameters, cv = 5, scoring = 'f1_macro')

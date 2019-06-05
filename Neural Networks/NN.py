@@ -13,9 +13,8 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 import sklearn.metrics as met
 from sklearn.neural_network import MLPClassifier
 
-df = pd.read_csv('../Data/weatherAUS.csv').sample(frac = .2)
+df = pd.read_csv('../Data/weatherAUS.csv').sample(frac = 1)
 features = df.columns[1:-1].tolist()
-print(features)
 """
 Replacing NaN values
 integer type - change to column mean
@@ -87,14 +86,21 @@ NN algorithm
 """
 hidden_layer_sizes = []
 for i in range(1,2):
-    for j in range(8,13):
+    for j in range(8,12):
         hidden_layer_sizes.append((j,)*i)
-params = [{'solver': ['sgd','adam'],
-           'learning_rate': [ 'adaptive','constant'],
-           'activation': [ 'relu', 'logistic'],
-           'hidden_layer_sizes': hidden_layer_sizes
-           }]
+#params = [{'solver': ['sgd','adam'],
+#           'learning_rate': [ 'adaptive','constant'],
+#           'activation': [ 'relu', 'logistic'],
+#           'hidden_layer_sizes': hidden_layer_sizes,
+#           'max_iter' : [1000]
+#           }]
 
+params = [{'solver': ['adam'],
+           'learning_rate': [ 'adaptive'],
+           'activation': [ 'relu'],
+           'hidden_layer_sizes': hidden_layer_sizes,
+           'max_iter' : [1000]
+           }]
 
 clf = GridSearchCV(MLPClassifier(), params, cv=5)
 clf.fit(x_train, y_train)
