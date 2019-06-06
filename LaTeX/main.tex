@@ -34,7 +34,7 @@
   escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
   extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
   firstnumber=1000,                % start line enumeration with line 1000
-  frame=single,	                   % adds a frame around the code
+  frame=single,                    % adds a frame around the code
   keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
   keywordstyle=\color{blue},       % keyword style
   language=Python,                 % the language of the code
@@ -48,7 +48,7 @@
   showtabs=false,                  % show tabs within strings adding particular underscores
   stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
   stringstyle=\color{mymauve},     % string literal style
-  tabsize=2,	                   % sets default tabsize to 2 spaces
+  tabsize=2,                     % sets default tabsize to 2 spaces
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
 
@@ -117,29 +117,29 @@ S obzirom da navedena 4 atributa imaju više od 35\% nedostajućih vrednosti, on
 \label{tab:nans}
 \begin{tabular}{|c|c|c|} \hline
 \textbf{Atribut} & \textbf{Procenat nedostajućih vrednosti}\\ \hline
-Date & 0.00\% \\ \hline
-Location & 0.00\% \\ \hline
-MinTemp & 0.00\% \\ \hline
-MaxTemp & 0.00\% \\ \hline
-Rainfall & 0.01\% \\ \hline
-Evaporation & 0.43\% \\ \hline
-Sunshine & 0.48\% \\ \hline
-WindGustDir & 0.07\% \\ \hline
-WindGustSpeed & 0.07\% \\ \hline
-WindDir9am & 0.07\% \\ \hline
-WindDir3pm & 0.03\% \\ \hline
-WindSpeed9am & 0.01\% \\ \hline
-WindSpeed3pm & 0.02\% \\ \hline
-Humidity9am & 0.01\% \\ \hline
-Humidity3pm & 0.03\% \\ \hline
-Pressure9am & 0.10\% \\ \hline
-Pressure3pm & 0.10\% \\ \hline
-Cloud9am & 0.38\% \\ \hline
-Cloud3pm & 0.40\% \\ \hline
-Temp9am & 0.01\% \\ \hline
-Temp3pm & 0.02\% \\ \hline
-RainToday & 0.01\% \\ \hline
-RainTomorrow & 0.00\% \\ \hline
+Date & 0\% \\ \hline
+Location & 0\% \\ \hline
+MinTemp & 0\% \\ \hline
+MaxTemp & 0\% \\ \hline
+Rainfall & 1\% \\ \hline
+Evaporation & 43\% \\ \hline
+Sunshine & 48\% \\ \hline
+WindGustDir & 7\% \\ \hline
+WindGustSpeed & 7\% \\ \hline
+WindDir9am & 7\% \\ \hline
+WindDir3pm & 3\% \\ \hline
+WindSpeed9am & 1\% \\ \hline
+WindSpeed3pm & 2\% \\ \hline
+Humidity9am & 1\% \\ \hline
+Humidity3pm & 3\% \\ \hline
+Pressure9am & 10\% \\ \hline
+Pressure3pm & 10\% \\ \hline
+Cloud9am & 38\% \\ \hline
+Cloud3pm & 40\% \\ \hline
+Temp9am & 1\% \\ \hline
+Temp3pm & 2\% \\ \hline
+RainToday & 1\% \\ \hline
+RainTomorrow & 0\% \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -153,7 +153,8 @@ Koeficijent korelacije je računat pomoću IBM SPSS Modeler alata i programskog 
 
 \subsubsection{Korelacija između 'MinTemp' i 'Temp9am'}
 \label{subsubsec:korMinTemp}
-Koeficijent korelacije između atributa 'MinTemp' i 'Temp9am' iznsio je 0.901. Vizuelno, korelacija je prikazana na slici \ref{fig:cor-1}. Posmatranjem ova dva atributa, dolazi se do zapažanja da je najniža temperatura u ranim jutarnjim časovima.
+Koeficijent korelacije između atributa 'MinTemp' i 'Temp9am' iznsio je 0.901. Vizuelno, korelacija je prikazana na slici \ref{fig:cor-1}. \par
+Posmatranjem ova dva atributa, dolazi se do zapažanja da je najniža temperatura u ranim jutarnjim časovima.
 \begin{figure}[H]
      \centering
      \includegraphics[width=0.8\textwidth]{Pics/corMinTemp.png}
@@ -163,7 +164,8 @@ Koeficijent korelacije između atributa 'MinTemp' i 'Temp9am' iznsio je 0.901. V
 
 \subsubsection{Korelacija između 'MaxTemp' i 'Temp3pm'}
 \label{subsubsec:korMaxTemp}
-Koeficijent korelacija između atributa 'MaxTemp' i 'Temp3pm' iznsio je 0.979. Vizuelno, korelacija je prikazana na slici \ref{fig:cor-2}\par. Kako je najniža temperatura u ranim jutarnjim satima, iz ove korelacije zapažamo da je dan najtopliji u 15:00 časova.
+Koeficijent korelacija između atributa 'MaxTemp' i 'Temp3pm' iznsio je 0.979. Vizuelno, korelacija je prikazana na slici \ref{fig:cor-2}.\par
+Kako je najniža temperatura u ranim jutarnjim satima, iz ove korelacije zapažamo da je dan najtopliji u 15:00 časova.
 \begin{figure}[H]
      \centering
      \includegraphics[width=0.8\textwidth]{Pics/corMaxTemp.png}
@@ -174,7 +176,8 @@ Koeficijent korelacija između atributa 'MaxTemp' i 'Temp3pm' iznsio je 0.979. V
 
 \subsubsection{Korelacija između 'Pressure9am' i 'Pressure3pm'}
 \label{subsubsec:kotP9P3}
-Koeficijent korelacija između atributa 'Pressure9am' i 'Pressure3pm' iznsio je 0.957. Vizuelno, korelacija je prikazana na slici \ref{fig:cor-3}\par. Iz ove korelacije zaključujemo da se pritisak vazduha znatno ne menja izmedjue 9:00 i 15:00.
+Koeficijent korelacija između atributa 'Pressure9am' i 'Pressure3pm' iznsio je 0.957. Vizuelno, korelacija je prikazana na slici \ref{fig:cor-3}\par.
+Iz ove korelacije zaključujemo da se pritisak vazduha znatno ne menja izmedjue 9:00 i 15:00.
 \begin{figure}[H]
      \centering
      \includegraphics[width=0.8\textwidth]{Pics/corP9P3.png}
